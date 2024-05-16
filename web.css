@@ -8,7 +8,7 @@ html {
   }
   
   .container {
-	background: url(papatyya.jpeg);
+	background: url(girişresim.jpg);
 	background-size: cover;
 	background-position:center;
     height: 100vh;
@@ -104,4 +104,33 @@ html {
 	color: #ff3333;
 	font-weight: bold;
   }
+
+
+
   
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Sayfanın taşmasını önler */
+}
+
+  .text {
+    text-align: left;
+	margin-right: 20px;
+}
+
+.image {
+	width: 150px; /* Resim genişliği */
+    height: auto; /* Resim yüksekliği otomatik */
+    margin: 10px;
+    transform: rotate(45deg); /* Resmi 45 derece döndürür */
+}
+
+/* Resimlerin yan yana gelmesini sağlar */
+.images-container {
+    display: flex;
+}
+
