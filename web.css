@@ -1,63 +1,107 @@
-div{
-background-color:#4F3977;
-color:#ECDEDE;
-font-family:"Gill Sans", Helvetica, Arial, sans-serif;
-font-size:12px;
-}
-div.a{
-background-color:#C4A9A9;
-color:#410506;
-
-
-
-
-
-body {
-	background-color:#red;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-
-header {
-    background-color: white;
-    color: #fff;
-    padding: 10px 0;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px;
-}
-
-nav ul li a:hover {
-    background-color: #555;
-}
-
-section {
-    padding: 20px;
-}
-
-h2 {
-    color: #333;
-}
-
-
-
-.menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+html {
+	scroll-behavior: smooth;
+  }
+  
+  * {
+	margin: 0;
+	padding: 0;
+  }
+  
+  .container {
+	background: url(papatyya.jpeg);
+	background-size: cover;
+	background-position:center;
+    height: 100vh;
+	
+  }
+  
+  .container .navbar {
+	width: 100%;
+	height: 80px;
+	background: rgba(7, 22, 235, 0.4);
+  }
+  
+  .navbar .logo {
+	display: inline-block;
+	margin-left: 50px;
+	margin-top: 20px;
+  }
+  
+  .navbar .logo a {
+	text-decoration: none;
+	font-size: 30px;
+	font-family: 'Franklin Gothic Medium';
+	color: #f3f3f3;
+  }
+  
+  .navbar ul {
+	float: right;
+	margin-right: 20px;
+  }
+  
+  .navbar ul li {
+	list-style: none;
+	display: inline-block;
+	margin: 0 8px;
+	line-height: 80px;
+  }
+  
+  .navbar ul li a {
+	color: white;
+	text-decoration: dotted;
+	font-size: 20px;
+	padding: 6px 14px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  .navbar ul li a.active,
+  .navbar ul li a:hover {
+	background: rgb(12, 213, 240);
+	border-radius: 2px;
+  }
+  
+  /* Eklenen Stiller */
+  form {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	width: 300px; /* Form genişliği */
+	margin: auto; /* Ortalama */
+	margin-top: 50px; /* Üstten boşluk */
+  }
+  
+  label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+  }
+  
+  input[type="submit"] {
+	background-color: #4caf50;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+	background-color: #45a049;
+  }
+  
+  p.error-message {
+	color: #ff3333;
+	font-weight: bold;
+  }
+  
