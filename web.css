@@ -5,6 +5,7 @@ html {
   * {
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
   }
   
 
@@ -106,41 +107,27 @@ html {
 	font-weight: bold;
   }
 
-
-
-  
-
   .text {
 	text-align: center;
   }
   
-  .images-container {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-  }
-  
-  .image {
-	max-width: 150px; /* Maksimum genişlik */
-	max-height: 150px; /* Maksimum yükseklik */
-	width: auto;
-	height: auto;
-	margin: 10px;
-	border-radius: 10px;
-  }
-  
 
+  .image-container {
+	max-width: 1200px;
+	width: 95% ;
+  }
 
-  /* Slider container */
-.slick-slider {
-	width: 80%; /* Slider genişliği */
-	margin: 0 auto; /* Ortala */
+  .slider-wrapper .image-list {
+	display: grid;
+	gap:18px;
+	font-size: 0;
+	overflow-x: auto;
+	grid-template-columns: repeat(10, 1fr);
   }
   
-  /* Slider içindeki resimler */
-  .slick-slider img {
-	width: 100%;
-	height: auto;
+  .slider-wrapper .image-list .image-item {
+	width: 325px;
+	height: 400px;
+	object-fit: cover;
   }
   
-
