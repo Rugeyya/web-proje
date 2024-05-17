@@ -7,6 +7,7 @@ html {
 	padding: 0;
   }
   
+
   .container {
 	background: url(girişresim.jpg);
 	background-size: cover;
@@ -109,28 +110,37 @@ html {
 
   
 
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden; /* Sayfanın taşmasını önler */
-}
-
   .text {
-    text-align: left;
-	margin-right: 20px;
-}
+	text-align: center;
+  }
+  
+  .images-container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+  }
+  
+  .image {
+	max-width: 150px; /* Maksimum genişlik */
+	max-height: 150px; /* Maksimum yükseklik */
+	width: auto;
+	height: auto;
+	margin: 10px;
+	border-radius: 10px;
+  }
+  
 
-.image {
-	width: 150px; /* Resim genişliği */
-    height: auto; /* Resim yüksekliği otomatik */
-    margin: 10px;
-    transform: rotate(45deg); /* Resmi 45 derece döndürür */
-}
 
-/* Resimlerin yan yana gelmesini sağlar */
-.images-container {
-    display: flex;
-}
+  /* Slider container */
+.slick-slider {
+	width: 80%; /* Slider genişliği */
+	margin: 0 auto; /* Ortala */
+  }
+  
+  /* Slider içindeki resimler */
+  .slick-slider img {
+	width: 100%;
+	height: auto;
+  }
+  
 
