@@ -3,13 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
+    <title> İletişim formu </title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        form {
+            width: 450px;
+            padding: 30px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        form div {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 20px;
+            color: #333333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #cccccc;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        textarea {
+            height: 120px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <form @submit.prevent="submitForm">
+        <form @submit.prevent="validateForm('submit')">
             <div>
-                <label for="name">Name:</label>
+                <label for="name">İsim:</label>
                 <input type="text" id="name" v-model="formData.name" required>
             </div>
             <div>
@@ -17,17 +77,139 @@
                 <input type="email" id="email" v-model="formData.email" required>
             </div>
             <div>
-                <label for="message">Message:</label>
+                <label for="phone">Telefon No:</label>
+                <input type="tel" id="phone" v-model="formData.phone" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number">
+            </div>
+            <div>
+                <label for="message">Eklemek istedikleriniz:</label>
                 <textarea id="message" v-model="formData.message" required></textarea>
             </div>
             <div>
-                <button type="button" @click="validateForm('submit')">Submit</button>
-                <button type="button" @click="validateForm('reset')">Reset</button>
+                <button type="submit">Gönder</button>
+                <button type="button" @click="validateForm('reset')">Sıfırla</button>
             </div>
         </form>
+
+
+        <button @click="saveToHtml">Bilgileri Kaydet</button>
+
+
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="script.js"></script>
+
+
+
+
+    <script>
+        function download(content, fileName, contentType) {
+            var a = document.createElement("a");
+            var file = new Blob([content], { type: contentType });
+            a.href = URL.createObjectURL(file);
+            a.download = fileName;
+            a.click();
+        }
+
+        function saveDataToHtmlFile(data) {
+            var htmlContent = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Gönderilen Bilgiler</title>
+                </head>
+                <body>
+                    <h1>Gönderilen Bilgiler</h1>
+                    <p><strong>İsim:</strong> ${data.name}</p>
+                    <p><strong>Email:</strong> ${data.email}</p>
+                    <p><strong>Telefon No:</strong> ${data.phone}</p>
+                    <p><strong>Mesaj:</strong> ${data.message}</p>
+                </body>
+                </html>
+            `;
+            download(htmlContent, 'bilgiler.html', 'text/html');
+        }
+
+        new Vue({
+            el: '#app',
+            data: {
+                formData: {
+                    name: '',
+                    email: '',
+                    phone: '',
+                    message: ''
+                }
+            },
+            methods: {
+                validateForm(action) {
+                    if (action === 'submit') {
+                        // Check if all fields are filled
+                        if (!this.formData.name || !this.formData.email || !this.formData.phone || !this.formData.message) {
+                            alert('Lütfen tüm alanları doldurun.');
+                            return;
+                        }
+
+                        // Validate email format
+                        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                        if (!emailPattern.test(this.formData.email)) {
+                            alert('Lütfen geçerli bir email adresi girin.');
+                            return;
+                        }
+
+                        // If all validations pass, submit the form
+                        this.submitForm();
+                    } else if (action === 'reset') {
+                        // Reset the form
+                        this.resetForm();
+                    }
+                },
+                submitForm() {
+                    // Submit the form data (You can implement this according to your backend)
+                    console.log('Form submitted:', this.formData);
+                },
+                resetForm() {
+                    // Reset form data
+                    this.formData.name = '';
+                    this.formData.email = '';
+                    this.formData.phone = '';
+                    this.formData.message = '';
+                },
+                
+
+                appendDataToHtmlFile(data) {
+            var htmlContent = `
+                <p><strong>İsim:</strong> ${data.name}</p>
+                <p><strong>Email:</strong> ${data.email}</p>
+                <p><strong>Telefon No:</strong> ${data.phone}</p>
+                <p><strong>Mesaj:</strong> ${data.message}</p>
+                <hr>
+            `;
+            var blob = new Blob([htmlContent], { type: 'text/html' });
+
+            var formData = new FormData();
+            formData.append('file', blob);
+
+            fetch('bilgiler.html', {
+                method: 'POST',
+                body: formData
+            }).then(function(response) {
+                console.log('Data appended successfully:', response);
+            }).catch(function(error) {
+                console.error('Error appending data:', error);
+            });
+        }
+
+        
+            }
+        });
+    </script>
+
+
+
+
+
 </body>
 </html>

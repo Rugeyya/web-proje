@@ -8,15 +8,38 @@ html {
 	box-sizing: border-box;
   }
   
+.navbar-brand{
+	font-size: 40px;
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
-  .container {
-	background: url(girişresim.jpg);
-	background-size: cover;
-	background-position:center;
-    height: 100vh;
-	
-  }
+
+
   
+  .container-text {
+    font-family: Arial, sans-serif; /* Font seçimi */
+    font-size: 18px; /* Yazı boyutu */
+    line-height: 1.6; /* Satır aralığı */
+	background-image: url(girişresim.jpg);
+    background-size:cover; /* Resmin boyutunu uyumlu hale getirme */
+    background-position: center; /* Resmi ortala */
+	padding: 20px; /* Yazı içeriği ile kenarlar arasında bir mesafe bırakmak için padding */
+    position: relative; /* Mutlak pozisyonlama için container'ı relative olarak ayarlar */
+	height: 100vh;
+}
+
+.row-text {
+    color: rgb(9, 7, 148); /* Metin rengi */
+    margin-bottom: 20px; /* Sıralar arası boşluk */
+}
+
+
+
+
+
+
+
+
   .container .navbar {
 	width: 100%;
 	height: 80px;
@@ -61,7 +84,8 @@ html {
 	background: rgb(12, 213, 240);
 	border-radius: 2px;
   }
-  
+
+
   /* Eklenen Stiller */
   form {
 	background-color: #fff;
@@ -130,4 +154,33 @@ html {
 	height: 400px;
 	object-fit: cover;
   }
-  
+
+
+  .text ,
+  .text2 {
+    margin-bottom: 50px; 
+}
+
+.text,
+.text2{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22px; 
+    line-height: 1.6; 
+	text-align: left; 
+}
+
+.image-container {
+    margin-top: 20px;
+}
+
+.text3 {
+    margin-bottom: 50px; 
+}
+
+
+.text3{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px; 
+    line-height: 1.6; 
+	text-align: left; 
+}

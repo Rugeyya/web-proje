@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($password === "g231210555") {
                 // Giriş başarılı
                 $_SESSION['username'] = $username;
-                header("Location: anasayfa.html");
+                header("Location: hakkımda.html");
                 exit;
             } else {
                 // Şifre hatalı
