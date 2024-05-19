@@ -90,19 +90,10 @@
             </div>
         </form>
 
-
-        <button @click="saveToHtml">Bilgileri Kaydet</button>
-
-
-
+        <button @click="appendDataToHtmlFile(formData)">Bilgileri Kaydet</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="script.js"></script>
-
-
-
-
     <script>
         function download(content, fileName, contentType) {
             var a = document.createElement("a");
@@ -110,27 +101,6 @@
             a.href = URL.createObjectURL(file);
             a.download = fileName;
             a.click();
-        }
-
-        function saveDataToHtmlFile(data) {
-            var htmlContent = `
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Gönderilen Bilgiler</title>
-                </head>
-                <body>
-                    <h1>Gönderilen Bilgiler</h1>
-                    <p><strong>İsim:</strong> ${data.name}</p>
-                    <p><strong>Email:</strong> ${data.email}</p>
-                    <p><strong>Telefon No:</strong> ${data.phone}</p>
-                    <p><strong>Mesaj:</strong> ${data.message}</p>
-                </body>
-                </html>
-            `;
-            download(htmlContent, 'bilgiler.html', 'text/html');
         }
 
         new Vue({
@@ -177,39 +147,18 @@
                     this.formData.phone = '';
                     this.formData.message = '';
                 },
-                
-
                 appendDataToHtmlFile(data) {
-            var htmlContent = `
-                <p><strong>İsim:</strong> ${data.name}</p>
-                <p><strong>Email:</strong> ${data.email}</p>
-                <p><strong>Telefon No:</strong> ${data.phone}</p>
-                <p><strong>Mesaj:</strong> ${data.message}</p>
-                <hr>
-            `;
-            var blob = new Blob([htmlContent], { type: 'text/html' });
-
-            var formData = new FormData();
-            formData.append('file', blob);
-
-            fetch('bilgiler.html', {
-                method: 'POST',
-                body: formData
-            }).then(function(response) {
-                console.log('Data appended successfully:', response);
-            }).catch(function(error) {
-                console.error('Error appending data:', error);
-            });
-        }
-
-        
+                    var htmlContent = `
+                        <p><strong>İsim:</strong> ${data.name}</p>
+                        <p><strong>Email:</strong> ${data.email}</p>
+                        <p><strong>Telefon No:</strong> ${data.phone}</p>
+                        <p><strong>Mesaj:</strong> ${data.message}</p>
+                        <hr>
+                    `;
+                    download(htmlContent, 'bilgiler.html', 'text/html');
+                }
             }
         });
     </script>
-
-
-
-
-
 </body>
 </html>

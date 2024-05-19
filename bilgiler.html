@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="validateForm('submit')">
+            <div>
+                <label for="name">İsim:</label>
+                <input type="text" id="name" v-model="formData.name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" v-model="formData.email" required>
+            </div>
+            <div>
+                <label for="phone">Telefoon No:</label>
+                <input type="tel" id="phone" v-model="formData.phone" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number">
+            </div>
+            <div>
+                <label for="message">Eklemek istedikleriniz:</label>
+                <textarea id="message" v-model="formData.message" required></textarea>
+            </div>
+            <div>
+                <button type="submit">Gönder</button>
+                <button type="button" @click="validateForm('reset')">Sıfırla</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="vue.js"></script>
+</body>
+</html>
